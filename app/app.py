@@ -11,8 +11,6 @@ st.title("AI Proofreader :sunglasses:")
 mode = st.selectbox("Choose input type:", ["Manual Input", "Upload Document"])
 
 # --- Input state --- #
-# st.session_state.setdefault("proofread", None)
-# st.session_state.setdefault("original", None)
 st.session_state.setdefault("proofread", {})
 st.session_state.setdefault("original", {})
 
@@ -45,6 +43,7 @@ if st.session_state.proofread and st.session_state.original:
         if corrected.strip() != original.strip():
             changed_sections.append((section, original, corrected))
 
+    # If no changes, show a success message, else display the changes
     if not changed_sections:
         st.success("No corrections are needed.")
     else:
